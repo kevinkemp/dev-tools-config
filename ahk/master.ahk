@@ -1,6 +1,3 @@
-; SaveAndRestoreWindows.ahk
-; KeepAwakeDuringWorkHours.ahk
-
 #NoEnv
 #Persistent
 #InstallKeybdHook
@@ -10,47 +7,40 @@ SetBatchLines, -1
 
 SetTimer, KeepAwake, 30000
 
-; Set the hotkeys (Win + S to save, Win + R to restore)
 #s::SaveWindowPositions()
 #r::RestoreWindowPositions()
 
 SaveWindowPositions() 
 {
-    ; Enumerate all top-level windows
+    windowsPositionsIniPath := A_ScriptDir "\WindowPositions.ini"
     WinGet, windowIDs, List
 
-    ; Loop through each window ID
     Loop, % windowIDs
     {
         thisID := windowIDs%A_Index%
 
-        ; Get window process and check if it's explorer.exe
         WinGet, process, ProcessName, ahk_id %thisID%
         if (process = "explorer.exe")
             continue
 
-        ; Get window position, size, and z-index
         WinGetPos, x, y, width, height, ahk_id %thisID%
         WinGet, zIndex, MinMax, ahk_id %thisID%
 
-        ; Save the window position, size, process, and z-index in the INI file
-        IniWrite, % x "|" y "|" width "|" height "|" zIndex, WindowPositions.ini, Positions, % process
+        IniWrite, % x "|" y "|" width "|" height "|" zIndex, windowsPositionsIniPath, Positions, % process
     }
 }
 
 RestoreWindowPositions() 
 {
-    ; Check if the INI file exists
-    if !FileExist("WindowPositions.ini")
+    windowsPositionsIniPath := A_ScriptDir "\WindowPositions.ini"
+    if !FileExist(windowsPositionsIniPath)
     {
         MsgBox, 48, Error, No window positions have been saved yet.
         return
     }
 
-    ; Loop through the saved windows in the INI file
-    Loop, Read, WindowPositions.ini
+    Loop, Read, %windowsPositionsIniPath%
     {
-        ; Extract the process, position, size, and z-index
         RegExMatch(A_LoopReadLine, "^(.*?)=(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)$", match)
 
         process := match1
@@ -60,7 +50,6 @@ RestoreWindowPositions()
         height := match5
         zIndex := match6
 
-        ; Restore the window position, size, and z-index
         WinMove, % "ahk_exe " process, , % x, % y, % width, % height
         if (zIndex = "-1")
             WinMinimize, % "ahk_exe " process
