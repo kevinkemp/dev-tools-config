@@ -1,0 +1,75 @@
+[credential]
+	helper = manager-core
+[credential "https://code.paylocity.com"]
+	provider = bitbucket
+[difftool "beyondcompare4"]
+	path = C:/Program Files/Beyond Compare 4/bcomp.exe
+	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[difftool "kdiff3"]
+	path = C:/Program Files/KDiff3/kdiff3.exe
+[diff]
+	guitool = beyondcompare4
+[mergetool "beyondcompare4"]
+	path = C:/Program Files/Beyond Compare 4/bcomp.exe
+	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[mergetool "code"]
+	path = C:/Program Files (x86)/Microsoft VS Code/Code.exe
+	cmd = \"C:/Program Files (x86)/Microsoft VS Code/Code.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[merge]
+	tool = beyondcompare4
+	guitool = beyondcompare4
+[core]
+	editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
+[user]
+	name = Kevin Kemp
+	email = kkemp@paylocity.com
+[push]
+	default = current
+[alias]
+	rb = ! git for-each-ref --count=30 --sort=-committerdate --format='%(authorname) \t%(committerdate) \t%(refname:short)' | grep origin/
+	lb = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	dt = difftool --dir-diff
+	mt = mergetool
+	ad = !git add -A $(git rev-parse --show-toplevel)
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff --word-diff
+	dc = diff --cached --word-diff
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+	sl = stash list
+	sa = stash apply
+	sp = stash pop
+	ss = stash save -u
+	vdt = difftool --dir-diff
+	vdtc = difftool --dir-diff --cached
+	dump = checkout -- .
+	tack = commit --amend -C HEAD
+	sh = diff-tree --no-commit-id --name-only -r HEAD
+	ign = ls-files -o -i --exclude-standard
+	lg1 = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)- %an%C(reset)%C(bold yellow)%d%C(reset)' --graph --abbrev-commit --decorate --date=relative  --all
+	lg2 = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(cyan)- %an%C(reset)' --graph --abbrev-commit --decorate  --all
+	lg = !git lg1
+	ll = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)- %an%C(reset)%C(bold yellow)%d%C(reset)' --decorate --numstat
+	fld = log --word-diff -u
+	diffr = "!f() { git diff $1^..$1 --word-diff; }; f"
+	diffrt = "!f() { git difftool $1^..$1 --word-diff; }; f"
+	la = !git config -l | grep alias | cut -c 7-
+	fp = !git add . && git commit -a -msquashme&& git rebase -i origin/develop && git push -f
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[safe]
+	directory = C:/paylocity/Paylocity.Benefits.Etl
+	directory = C:/paylocity/wb-paylocity.webbenefits
+	directory = C:/paylocity/paylocity.webbenefits
