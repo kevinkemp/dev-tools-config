@@ -1,7 +1,5 @@
 [credential]
 	helper = manager-core
-[credential "https://code.paylocity.com"]
-	provider = bitbucket
 [difftool "beyondcompare4"]
 	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
@@ -70,6 +68,4 @@
 [rebase]
 	autoStash = false
 [safe]
-	directory = C:/paylocity/Paylocity.Benefits.Etl
 	directory = C:/paylocity/wb-paylocity.webbenefits
-	directory = C:/paylocity/paylocity.webbenefits
