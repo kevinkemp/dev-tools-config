@@ -1,5 +1,11 @@
 # dev-tools-config
-A backup solution for my development configuration that is easy to install in a new environment.
+A backup solution for my Windows development configuration that is easy to install in a new environment.
+
+### Pre-requisites:
+* Windows machine
+* git installed
+* AutoHotKey installed
+* Cmder installed
 
 ### How to use?
 I recommend forking this repo and using it to keep your own settings in sync.
