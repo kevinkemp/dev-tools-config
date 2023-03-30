@@ -7,6 +7,10 @@ I recommend forking this repo and using it to keep your own settings in sync.
 * To get sym links for supported applications: run ./setup.ps1 as administrator
 * To get other configs: use backed up settings files to seed settings into your cloud account
 
+Notes: 
+* .gitconfig has my name/email... you'll need to replace it with your own
+* AHK script uses my schedule... update as necessary for your own
+
 ### How to add new settings?
 Add a line to the links.config file to have the setup.ps1 create a sym link for your new application.
 
