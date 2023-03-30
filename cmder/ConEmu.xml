@@ -568,14 +568,14 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="&lt;Startup&gt;" modified="2023-03-30 10:42:03" build="221218">
+				<key name="&lt;Startup&gt;" modified="2023-03-30 11:02:04" build="221218">
 					<value name="GuiArgs" type="string" data=""/>
-					<value name="Active" type="long" data="3"/>
+					<value name="Active" type="long" data="4"/>
 					<value name="Count" type="long" data="4"/>
 					<value name="Cmd1" type="string" data='* -cur_console:d:C:\paylocity\paylocity.webbenefits -cur_console:C:%CMDER_ROOT%\icons\cmder.ico cmd /k ""%ConEmuDir%\..\init.bat" "'/>
 					<value name="Cmd2" type="string" data='* -cur_console:d:c:\paylocity\ben-paylocity.benefits.automation\API -cur_console:C:%CMDER_ROOT%\icons\cmder.ico cmd /k ""%ConEmuDir%\..\init.bat" "'/>
-					<value name="Cmd3" type="string" data='&gt;* -cur_console:d:c:\paylocity\dev-tools-config -cur_console:C:%CMDER_ROOT%\icons\cmder.ico cmd /k ""%ConEmuDir%\..\init.bat" "'/>
-					<value name="Cmd4" type="string" data='* -cur_console:d:C:\paylocity -cur_console:C:%CMDER_ROOT%\icons\cmder.ico PowerShell -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "Invoke-Expression &apos;Import-Module &apos;&apos;%ConEmuDir%\..\profile.ps1&apos;&apos;&apos;"'/>
+					<value name="Cmd3" type="string" data='* -cur_console:d:c:\paylocity\dev-tools-config -cur_console:C:%CMDER_ROOT%\icons\cmder.ico cmd /k ""%ConEmuDir%\..\init.bat" "'/>
+					<value name="Cmd4" type="string" data='&gt;* -cur_console:d:C:\paylocity -cur_console:C:%CMDER_ROOT%\icons\cmder.ico PowerShell -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "Invoke-Expression &apos;Import-Module &apos;&apos;%ConEmuDir%\..\profile.ps1&apos;&apos;&apos;"'/>
 				</key>
 				<key name="Task10" modified="2023-02-16 09:47:27" build="221218">
 					<value name="Name" type="string" data="{WSL::bash}"/>

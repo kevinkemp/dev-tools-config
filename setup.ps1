@@ -30,5 +30,12 @@ foreach ($row in $configFileContent) {
         exit
     }
 
+    if (Test-Path $destinationPath) {
+        if (-Not(Get-Item $destinationPath).LinkType -eq "SymbolicLink") {
+            Write-Host "File already exists: $destinationPath; back it up before continuing."
+            exit
+        }
+    }
+
     New-Item -ItemType SymbolicLink -Path $destinationPath -Target $sourcePath -Force
 }
