@@ -6,6 +6,7 @@ A backup solution for my Windows development configuration that is easy to insta
 * git installed
 * AutoHotKey installed
 * Cmder installed
+* destination paths in links.config need to match your machine
 
 ### How to use?
 I recommend forking this repo and using it to keep your own settings in sync.
