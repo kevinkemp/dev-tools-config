@@ -8,7 +8,7 @@ SetBatchLines, -1
 SetTimer, KeepAwake, 30000
 
 #s::SaveWindowPositions()
-#r::RestoreWindowPositions()
+#a::RestoreWindowPositions()
 
 SaveWindowPositions() 
 {
@@ -26,7 +26,7 @@ SaveWindowPositions()
         WinGetPos, x, y, width, height, ahk_id %thisID%
         WinGet, zIndex, MinMax, ahk_id %thisID%
 
-        IniWrite, % x "|" y "|" width "|" height "|" zIndex, windowsPositionsIniPath, Positions, % process
+        IniWrite, % x "|" y "|" width "|" height "|" zIndex, %windowsPositionsIniPath%, Positions, % process
     }
 }
 
@@ -78,9 +78,9 @@ KeepAwake()
 
 TodayIsWorkday()
 {
-    FormatTime, DayOfWeek,,dddd,
+    FormatTime, DayOfWeek,,dddd
     Answer := false
-    if (DayOfWeek in Tuesday, Wednesday, Thursday, Friday)
+    if (IsItemInList(DayOfWeek, "Tuesday,Wednesday,Thursday,Friday"))
     {
         Answer := true
     }
@@ -91,4 +91,14 @@ TimeIsBetween(LowerBound, UpperBound)
 {
     FormatTime,CurrentTime,,HHmmss
     Return CurrentTime >= LowerBound and CurrentTime <= UpperBound
+}
+
+IsItemInList(item, list, del:=",")
+{
+	If IsObject(list){
+		for k,v in list
+			if (v=item)
+				return true
+		return false
+	} else Return !!InStr(del list del, del item del)
 }
