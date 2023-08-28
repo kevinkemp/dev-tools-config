@@ -1,5 +1,5 @@
 [credential]
-	helper = manager
+	helper = store
 [difftool "beyondcompare4"]
 	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
@@ -61,7 +61,6 @@
 	diffrt = "!f() { git difftool $1^..$1 --word-diff; }; f"
 	la = !git config -l | grep alias | cut -c 7-
 	fp = !git add . && git commit -a -msquashme&& git rebase -i origin/develop && git push -f
-	credential-manager = credential-manager-core
 [pull]
 	rebase = false
 [fetch]
@@ -71,7 +70,4 @@
 	autosquash = false
 	updateRefs = false
 [safe]
-	directory = C:/paylocity/wb-paylocity.webbenefits
 	directory = *
-[credential "helperselector"]
-	selected = manager
