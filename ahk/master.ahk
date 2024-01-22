@@ -65,7 +65,7 @@ KeepAwake:
 KeepAwake()
 {
     IsWorkday := TodayIsWorkday()
-    IsWorkHours := TimeIsBetween(070000, 180000)
+    IsWorkHours := TimeIsBetween(080000, 150000)
     IsIdle := A_TimeIdle >= 3 * 60 * 1000
     OutputDebug, %IsIdle% %IsWorkday% %IsWorkHours% %A_TimeIdle%
     if (IsIdle and IsWorkday and IsWorkHours)
@@ -80,7 +80,7 @@ TodayIsWorkday()
 {
     FormatTime, DayOfWeek,,dddd
     Answer := false
-    if (IsItemInList(DayOfWeek, "Tuesday,Wednesday,Thursday,Friday"))
+    if (IsItemInList(DayOfWeek, "Monday,Tuesday,Wednesday,Thursday,Friday"))
     {
         Answer := true
     }
