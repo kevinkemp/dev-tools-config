@@ -7,8 +7,8 @@ SetBatchLines, -1
 
 SetTimer, KeepAwake, 30000
 
-#s::SaveWindowPositions()
-#a::RestoreWindowPositions()
+#/::SaveWindowPositions()
+#'::RestoreWindowPositions()
 
 SaveWindowPositions() 
 {

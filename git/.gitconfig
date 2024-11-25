@@ -10,24 +10,22 @@
 [mergetool "beyondcompare4"]
 	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
-[mergetool "code"]
-	path = C:/Program Files (x86)/Microsoft VS Code/Code.exe
-	cmd = \"C:/Program Files (x86)/Microsoft VS Code/Code.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 [merge]
 	tool = beyondcompare4
 	guitool = beyondcompare4
 [core]
-	editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
+	editor = code --wait
 [user]
 	name = Kevin Kemp
 	email = kkemp@paylocity.com
 [push]
 	default = current
+	autoSetupRemote = true
 [alias]
 	rb = ! git for-each-ref --count=30 --sort=-committerdate --format='%(authorname) \t%(committerdate) \t%(refname:short)' | grep origin/
 	lb = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 	b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-	dt = difftool --dir-diff
+	dt = difftool --dir-diff --word-diff-regex=[^[:space:]]
 	mt = mergetool
 	ad = !git add -A $(git rev-parse --show-toplevel)
 	st = status
@@ -46,8 +44,6 @@
 	sa = stash apply
 	sp = stash pop
 	ss = stash save -u
-	vdt = difftool --dir-diff
-	vdtc = difftool --dir-diff --cached
 	dump = checkout -- .
 	tack = commit --amend -C HEAD
 	sh = diff-tree --no-commit-id --name-only -r HEAD
@@ -61,6 +57,7 @@
 	diffrt = "!f() { git difftool $1^..$1 --word-diff; }; f"
 	la = !git config -l | grep alias | cut -c 7-
 	fp = !git add . && git commit -a -msquashme&& git rebase -i origin/develop && git push -f
+	cfg = config -e --global
 [pull]
 	rebase = false
 [fetch]
