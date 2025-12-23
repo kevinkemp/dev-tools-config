@@ -1,8 +1,8 @@
-$gitRoot = (git rev-parse --show-toplevel -q 2>$null)
-if (-Not($gitRoot)) {
-    Write-Host "Not inside a Git repository or Git is not installed."
-    exit
-}
+# $gitRoot = (git rev-parse --show-toplevel -q 2>$null)
+# if (-Not($gitRoot)) {
+#     Write-Host "Not inside a Git repository or Git is not installed."
+#     exit
+# }
 
 $configFilePath = "links.config"
 
@@ -24,6 +24,38 @@ foreach ($row in $configFileContent) {
     $sourcePath = $parts[0]
     $destinationPath = $parts[1]
     $destinationPath = $destinationPath.Replace('~', $env:USERPROFILE)
+
+    # Handle wildcard (*) to expand to all files in a directory
+    if ($sourcePath -match '\*$') {
+        $sourceDir = Split-Path $sourcePath -Parent
+        $destDir = Split-Path $destinationPath -Parent
+
+        if (-Not(Test-Path $sourceDir)) {
+            Write-Host "Directory not found: $sourceDir"
+            exit
+        }
+
+        # Ensure destination directory exists
+        if (-Not(Test-Path $destDir)) {
+            New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+        }
+
+        $files = Get-ChildItem -Path $sourceDir -File
+        foreach ($file in $files) {
+            $fileSourcePath = $file.FullName
+            $fileDestPath = Join-Path $destDir $file.Name
+
+            if (Test-Path $fileDestPath) {
+                if (-Not(Get-Item $fileDestPath).LinkType -eq "SymbolicLink") {
+                    Write-Host "File already exists: $fileDestPath; back it up before continuing."
+                    exit
+                }
+            }
+
+            New-Item -ItemType SymbolicLink -Path $fileDestPath -Target $fileSourcePath -Force
+        }
+        continue
+    }
 
     if (-Not(Test-Path $sourcePath)) {
         Write-Host "File not found: $sourcePath"

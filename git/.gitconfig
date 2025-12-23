@@ -1,5 +1,5 @@
 [credential]
-	helper = wincred
+	helper = manager
 [difftool "beyondcompare4"]
 	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
