@@ -1,17 +1,18 @@
-# $gitRoot = (git rev-parse --show-toplevel -q 2>$null)
-# if (-Not($gitRoot)) {
-#     Write-Host "Not inside a Git repository or Git is not installed."
-#     exit
-# }
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$Username,
+    [Parameter(Mandatory = $false)]
+    [string]$LinksConfig = "Links.config",
+    [Parameter(Mandatory = $false)]
+    [string]$StartupTasksConfig = "StartupTasks.config"
+)
 
-$configFilePath = "links.config"
-
-if (-Not(Test-Path $configFilePath)) {
-    Write-Host "Configuration file not found: $configFilePath"
+if (-Not(Test-Path $LinksConfig)) {
+    Write-Host "Configuration file not found: $LinksConfig"
     exit
 }
 
-$configFileContent = Get-Content $configFilePath
+$configFileContent = Get-Content $LinksConfig
 
 foreach ($row in $configFileContent) {
     $parts = $row -split ',', 2
@@ -25,7 +26,6 @@ foreach ($row in $configFileContent) {
     $destinationPath = $parts[1]
     $destinationPath = $destinationPath.Replace('~', $env:USERPROFILE)
 
-    # Handle wildcard (*) to expand to all files in a directory
     if ($sourcePath -match '\*$') {
         $sourceDir = Split-Path $sourcePath -Parent
         $destDir = Split-Path $destinationPath -Parent
@@ -35,7 +35,6 @@ foreach ($row in $configFileContent) {
             exit
         }
 
-        # Ensure destination directory exists
         if (-Not(Test-Path $destDir)) {
             New-Item -ItemType Directory -Path $destDir -Force | Out-Null
         }
@@ -71,3 +70,5 @@ foreach ($row in $configFileContent) {
 
     New-Item -ItemType SymbolicLink -Path $destinationPath -Target $sourcePath -Force
 }
+
+.\Create-StartupScheduledTasks.ps1 -Username $Username
