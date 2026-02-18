@@ -68,3 +68,5 @@
 	updateRefs = false
 [safe]
 	directory = *
+[credential "https://github.com/Paylocity/webplatform.ui.git"]
+	username = kkemp
