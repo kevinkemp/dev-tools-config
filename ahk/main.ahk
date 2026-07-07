@@ -14,15 +14,14 @@ SetWorkingDir %A_ScriptDir%
 #Include %A_ScriptDir%\lib\shortcuts_help.ahk
 #Include %A_ScriptDir%\lib\remove_edge_from_quickbar.ahk
 
+SetTimer, KeepAwake, 30000
+
 ; Hotkeys # = win key, ^ = ctrl, ! = alt, + = shift
 #^s::SaveWindowPositions()
 #^r::RestoreWindowPositions()
 #t::PromptTask()
 #n::PromptNote()
 #h::ToggleShortcutsHelp()
-
-SetTimer, KeepAwake, 30000
-return
 
 ; Keep the always-on-top shortcuts overlay's state in sync when it is
 ; closed via its title bar or dismissed with Esc.
