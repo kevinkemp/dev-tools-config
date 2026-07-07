@@ -1,0 +1,9 @@
+{
+    // Every AutoHotkey script in this repo targets AutoHotkey v1.1, so pin all
+    // .ahk files to the v1 language service (languageId "ahk"). Without this,
+    // AHK++ defaults new/expression-heavy files to its v2 parser and reports
+    // false errors on valid v1 syntax (e.g. the Gui and WinGet commands).
+    "files.associations": {
+        "*.ahk": "ahk"
+    }
+}

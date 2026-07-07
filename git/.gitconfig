@@ -1,14 +1,10 @@
 [credential]
 	helper = manager
 [difftool "beyondcompare4"]
-	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
-[difftool "kdiff3"]
-	path = C:/Program Files/KDiff3/kdiff3.exe
 [diff]
 	guitool = beyondcompare4
 [mergetool "beyondcompare4"]
-	path = C:/Program Files/Beyond Compare 4/bcomp.exe
 	cmd = \"C:/Program Files/Beyond Compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 [merge]
 	tool = beyondcompare4
@@ -25,7 +21,7 @@
 	rb = ! git for-each-ref --count=30 --sort=-committerdate --format='%(authorname) \t%(committerdate) \t%(refname:short)' | grep origin/
 	lb = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 	b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-	dt = difftool --dir-diff --word-diff-regex=[^[:space:]]
+	dt = difftool --dir-diff
 	mt = mergetool
 	ad = !git add -A $(git rev-parse --show-toplevel)
 	st = status

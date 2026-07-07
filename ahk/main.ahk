@@ -11,6 +11,7 @@ SetWorkingDir %A_ScriptDir%
 #Include %A_ScriptDir%\lib\keep_awake.ahk
 #Include %A_ScriptDir%\lib\window_positions.ahk
 #Include %A_ScriptDir%\lib\obsidian.ahk
+#Include %A_ScriptDir%\lib\shortcuts_help.ahk
 #Include %A_ScriptDir%\lib\remove_edge_from_quickbar.ahk
 
 ; Hotkeys # = win key, ^ = ctrl, ! = alt, + = shift
@@ -18,6 +19,15 @@ SetWorkingDir %A_ScriptDir%
 #^r::RestoreWindowPositions()
 #t::PromptTask()
 #n::PromptNote()
+#h::ToggleShortcutsHelp()
 
 SetTimer, KeepAwake, 30000
+return
+
+; Keep the always-on-top shortcuts overlay's state in sync when it is
+; closed via its title bar or dismissed with Esc.
+ShortcutsHelp_Close:
+ShortcutsHelp_Escape:
+    Gui, Hide
+    ShortcutsHelp_Visible := false
 return

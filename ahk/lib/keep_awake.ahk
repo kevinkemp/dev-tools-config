@@ -12,7 +12,7 @@ KeepAwake()
     global ES_SYSTEM_REQUIRED
     global ES_DISPLAY_REQUIRED
     IsWorkday   := TodayIsWorkday()
-    IsWorkHours := TimeIsBetween(080000, 150000)
+    IsWorkHours := TimeIsBetween(070000, 160000)
 
     if (!KeepAwake_Active)
     {
